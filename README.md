@@ -10,8 +10,8 @@ After building the Python CLI version, I wanted to learn how to make the same id
 
 ### Roadmap
 
-- [ ] **Version 1.0** — Basic layout and project list display
-- [ ] **Version 1.1** — Add a new project (with browser storage)
+- [x] **Version 1.0** — Basic layout and project list display
+- [x] **Version 1.1** — Add a new project (with browser storage)
 - [ ] **Version 1.2** — Mark a project as finished (with celebration message)
 - [ ] **Version 1.3** — Delete a project (with the Shame Letter)
 - [ ] **Version 2.0** — Visual polish and better styling
