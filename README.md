@@ -10,12 +10,21 @@ Built with HTML, CSS, and vanilla JavaScript as the web counterpart to my [Unfin
 
 After building the Python CLI version, I wanted to learn how to make the same idea work in a browser. Same soul, different language.
 
+### How It Works
+
+- The app shows your current list of unfinished projects.
+- You can add new projects.
+- Click "Finish" on any project to mark it complete — you'll be congratulated.
+- The dashboard at the top shows your proud/encouraging status based on how many projects you've finished.
+- (Coming soon) Delete a project with a shame letter.
+
 ### Roadmap
 
 - [x] **Version 1.0** — Basic layout and project list display
 - [x] **Version 1.1** — Add a new project (with browser storage)
-- [ ] **Version 1.2** — Mark a project as finished (with celebration message)
-- [ ] **Version 1.3** — Delete a project (with the Shame Letter)
+- [x] **Version 1.2** — Mark a project as finished (with celebration message)
+- [x] **Version 1.3** — Proud/encouraging dashboard message
+- [ ] **Version 1.4** — Delete a project (with the Shame Letter)
 - [ ] **Version 2.0** — Visual polish and better styling
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
