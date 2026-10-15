@@ -2,30 +2,72 @@
 const inputBox = document.getElementById("project-input");
 const addButton = document.getElementById("add-button");
 const projectList = document.getElementById("project-list");
+const statusMessage = document.getElementById("status-message");
 
 // Auto-focus the input box when the page loads
 inputBox.focus();
 
-// Step 2: Load any saved projects from the browser's storage
-let projects = JSON.parse(localStorage.getItem("projects")) || [];
+// Step 2: Load saved data from the browser
+// We now store TWO lists: unfinished and finished
+let data = JSON.parse(localStorage.getItem("unfinishedBusinessData")) || {
+    unfinished: [],
+    finished: []
+};
 
-// Step 3: A helper function to save projects to storage and re-render the list
+// Step 3: A helper to save and re-render everything
 function saveAndRender() {
-    // Save to browser storage
-    localStorage.setItem("projects", JSON.stringify(projects));
+    localStorage.setItem("unfinishedBusinessData", JSON.stringify(data));
 
-    // Clear the current list on the page
+    // Clear the list and the status message
     projectList.innerHTML = "";
+    statusMessage.innerHTML = "";
 
-    // Rebuild the list from our projects array
-    projects.forEach(function (projectName) {
-        const newItem = document.createElement("li");
-        newItem.textContent = projectName;
-        projectList.appendChild(newItem);
+    // Render the unfinished projects with a "Finish" button on each
+    data.unfinished.forEach(function (projectName, index) {
+        const listItem = document.createElement("li");
+        listItem.textContent = projectName;
+
+        const finishButton = document.createElement("button");
+        finishButton.textContent = "Finish";
+        finishButton.className = "finish-button";
+        finishButton.addEventListener("click", function () {
+            finishProject(index);
+        });
+
+        listItem.appendChild(finishButton);
+        projectList.appendChild(listItem);
     });
+
+    // Render the proud/encouraging message
+    const finishedCount = data.finished.length;
+    if (finishedCount === 0) {
+        statusMessage.innerHTML = `
+            <p>I see you couldn't manage to finish any projects yet.</p>
+            <p>Roll up your sleeves, get things done. I'm ready to celebrate your success with you.</p>
+        `;
+    } else {
+        statusMessage.innerHTML = `
+            <p>I proudly announce that you have finished <strong>${finishedCount}</strong> successful project(s) with us. So proud of you.</p>
+        `;
+    }
 }
 
-// Step 4: Listen for a click on the "Add Project" button
+// Step 4: The function that runs when a project is finished
+function finishProject(index) {
+    const finishedName = data.unfinished[index];
+
+    // Show a celebration
+    alert(`🎉 You finished: '${finishedName}'! 🎉\n\nThe world you see today is made by some dedicated and determined souls like you. Finishing a project is a brick laid perfectly in the castle of your dreams.\n\nWell done. Truly.`);
+
+    // Move it from unfinished to finished
+    data.finished.push(finishedName);
+    data.unfinished.splice(index, 1);
+
+    // Save and redraw
+    saveAndRender();
+}
+
+// Step 5: Listen for a click on the "Add Project" button
 addButton.addEventListener("click", function () {
     const projectName = inputBox.value.trim();
 
@@ -34,18 +76,13 @@ addButton.addEventListener("click", function () {
         return;
     }
 
-    // Add the new project to our array
-    projects.push(projectName);
-
-    // Clear the input box
+    data.unfinished.push(projectName);
     inputBox.value = "";
     inputBox.focus();
-
-    // Save and re-draw the list
     saveAndRender();
 });
 
-// Step 5: Allow the user to press Enter to add a project
+// Step 6: Allow the user to press Enter to add a project
 inputBox.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -53,5 +90,5 @@ inputBox.addEventListener("keydown", function (event) {
     }
 });
 
-// Step 6: When the page loads, draw the list from storage
+// Step 7: Draw the list when the page loads
 saveAndRender();
