@@ -91,3 +91,29 @@ li {
 #subtitle {
     text-align: center;
 }
+
+.finish-button {
+    float: right;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+#status-message {
+    text-align: center;
+    margin: 25px 0;
+    padding: 15px;
+    background-color: #0f0f1e;
+    border-radius: 6px;
+    color: #a0a0b0;
+}
+
+#status-message strong {
+    color: #d62828;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
