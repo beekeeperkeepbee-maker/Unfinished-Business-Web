@@ -80,14 +80,6 @@ ul {
     margin-top: 15px;
 }
 
-li {
-    background-color: #0f0f1e;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    border-left: 3px solid #d62828;
-}
-
 #subtitle {
     text-align: center;
 }
@@ -112,7 +104,48 @@ li {
     color: #d62828;
 }
 
+
+.finish-button {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+}
+
+#status-message {
+    text-align: center;
+    margin: 25px 0;
+    padding: 15px;
+    background-color: #0f0f1e;
+    border-radius: 6px;
+    color: #a0a0b0;
+}
+
+#status-message strong {
+    color: #d62828;
+}
+
+.delete-button {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    background-color: #2a2a45;
+    color: #a0a0b0;
+}
+
+.delete-button:hover {
+    background-color: #3a3a55;
+    color: #eaeaea;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; 
+}
+
 li {
+    background-color: #0f0f1e;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 3px solid #d62828;
     display: flex;
     justify-content: space-between;
     align-items: center;
