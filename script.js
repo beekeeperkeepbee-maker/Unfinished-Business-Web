@@ -22,11 +22,15 @@ function saveAndRender() {
     projectList.innerHTML = "";
     statusMessage.innerHTML = "";
 
-    // Render the unfinished projects with a "Finish" button on each
+    // Render the unfinished projects with "Finish" and "Delete" buttons on each
     data.unfinished.forEach(function (projectName, index) {
         const listItem = document.createElement("li");
-        listItem.textContent = projectName;
 
+        // 1. Create the text span for the project name
+        const textSpan = document.createElement("span");
+        textSpan.textContent = projectName;
+
+        // 2. Create the Finish button
         const finishButton = document.createElement("button");
         finishButton.textContent = "Finish";
         finishButton.className = "finish-button";
@@ -34,7 +38,25 @@ function saveAndRender() {
             finishProject(index);
         });
 
-        listItem.appendChild(finishButton);
+        // 3. Create the Delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "delete-button";
+        deleteButton.addEventListener("click", function () {
+            shameAndDelete(index);
+        });
+
+        // 4. Group the buttons together
+        const buttonGroup = document.createElement("div");
+        buttonGroup.className = "button-group";
+        buttonGroup.appendChild(finishButton);
+        buttonGroup.appendChild(deleteButton);
+
+        // 5. Assemble the final list item
+        listItem.appendChild(textSpan);
+        listItem.appendChild(buttonGroup);
+        
+        // 6. Add it to the page
         projectList.appendChild(listItem);
     });
 
@@ -52,7 +74,7 @@ function saveAndRender() {
     }
 }
 
-// Step 4: The function that runs when a project is finished
+// The function that runs when a project is finished
 function finishProject(index) {
     const finishedName = data.unfinished[index];
 
@@ -65,6 +87,34 @@ function finishProject(index) {
 
     // Save and redraw
     saveAndRender();
+}
+
+// Step 4: The function that runs when a project is finished
+function shameAndDelete(index) {
+    const projectName = data.unfinished[index];
+    
+    // The prompt() function asks the user for input
+    const shameLetter = prompt(
+        `You are trying to remove: '${projectName}'.\n\n` +
+        `This is shameful to leave a project undone. Therefore, you have to write a shame letter.\n\n` +
+        `I am ashamed that even I started this project I am incapable of finishing it.\n` +
+        `even though humans can do anything if they really want to...\n\n` +
+        `(Type the rest of your letter below. Be honest. It must be at least 500 characters long to count.)`
+    );
+
+    // If the user clicked "Cancel", shameLetter will be null. Stop here.
+    if (shameLetter === null) {
+        return;
+    }
+
+    // Check the length
+    if (shameLetter.length < 500) {
+        alert(`Your letter is only ${shameLetter.length} characters long. That's not a page. Try again.`);
+    } else {
+        alert("...You have shamed yourself. The project has been removed.");
+        data.unfinished.splice(index, 1);
+        saveAndRender();
+    }
 }
 
 // Step 5: Listen for a click on the "Add Project" button
