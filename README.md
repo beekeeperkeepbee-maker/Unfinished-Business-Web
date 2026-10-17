@@ -16,7 +16,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - You can add new projects.
 - Click "Finish" on any project to mark it complete — you'll be congratulated.
 - The dashboard at the top shows your proud/encouraging status based on how many projects you've finished.
-- (Coming soon) Delete a project with a shame letter.
+- **Delete:** Try to abandon a project, and the app forces you to write a 500-character letter of shame first.
 
 ### Roadmap
 
@@ -24,7 +24,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 1.1** — Add a new project (with browser storage)
 - [x] **Version 1.2** — Mark a project as finished (with celebration message)
 - [x] **Version 1.3** — Proud/encouraging dashboard message
-- [ ] **Version 1.4** — Delete a project (with the Shame Letter)
+- [x] **Version 1.4** — Delete a project (with the Shame Letter)
 - [ ] **Version 2.0** — Visual polish and better styling
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
