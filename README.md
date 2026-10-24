@@ -17,6 +17,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - Click "Finish" on any project to mark it complete — you'll be congratulated.
 - The dashboard at the top shows your proud/encouraging status based on how many projects you've finished.
 - **Delete:** Try to abandon a project, and the app forces you to write a 500-character letter of shame first.
+- **Reminders:** Click "🔔 Enable Reminders" and allow the browser permission. The app uses a Service Worker to send a desktop notification 1 minute after you add a project. (In a future version, this will become a daily reminder.)
 
 ### Roadmap
 
@@ -25,7 +26,8 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 1.2** — Mark a project as finished (with celebration message)
 - [x] **Version 1.3** — Proud/encouraging dashboard message
 - [x] **Version 1.4** — Delete a project (with the Shame Letter)
-- [ ] **Version 2.0** — Visual polish and better styling
+- [x] **Version 1.5** — Browser notification reminders (using a Service Worker)
+- [ ] **Version 2.0** — Visual polish (Finished Projects trophy case, animations)
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
 ### Built With
