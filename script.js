@@ -5,6 +5,17 @@ const projectList = document.getElementById("project-list");
 const statusMessage = document.getElementById("status-message");
 const notifyButton = document.getElementById("enable-notifications");
 
+// Register the service worker for notifications
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+        .then(function(registration) {
+            console.log("Service Worker registered:", registration);
+        })
+        .catch(function(error) {
+            console.log("Service Worker registration failed:", error);
+        });
+}
+
 // Auto-focus the input box when the page loads
 inputBox.focus();
 
@@ -145,11 +156,15 @@ addButton.addEventListener("click", function () {
         );
     }
 
-    // Send a test notification immediately to confirm it works
+        // Send a test notification in 1 minute using the service worker
     if (Notification.permission === "granted") {
-        new Notification("Unfinished Business Reminder", {
-            body: `Don't forget: you started "${projectName}". Are you making progress?`,
-        });
+        setTimeout(function() {
+            navigator.serviceWorker.ready.then(function(registration) {
+                registration.showNotification("Unfinished Business Reminder", {
+                    body: `Don't forget: you started "${projectName}". Are you making progress?`,
+                });
+            });
+        }, 60000);
     }
     
     saveAndRender();
