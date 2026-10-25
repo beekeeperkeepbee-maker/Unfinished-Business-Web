@@ -4,6 +4,8 @@ const addButton = document.getElementById("add-button");
 const projectList = document.getElementById("project-list");
 const statusMessage = document.getElementById("status-message");
 const notifyButton = document.getElementById("enable-notifications");
+const finishedHeading = document.getElementById("finished-heading");
+const finishedList = document.getElementById("finished-list");
 
 // Register the service worker for notifications
 if ("serviceWorker" in navigator) {
@@ -92,6 +94,23 @@ function saveAndRender() {
         statusMessage.innerHTML = `
             <p>I proudly announce that you have finished <strong>${finishedCount}</strong> successful project(s) with us. So proud of you.</p>
         `;
+    }
+
+    // Render the Finished Projects trophy case
+    finishedList.innerHTML = "";
+
+    if (finishedCount > 0) {
+        finishedHeading.style.display = "block";
+        finishedList.style.display = "block";
+
+        data.finished.forEach(function (projectName) {
+            const listItem = document.createElement("li");
+            listItem.textContent = projectName;
+            finishedList.appendChild(listItem);
+        });
+    } else {
+        finishedHeading.style.display = "none";
+        finishedList.style.display = "none";
     }
 }
 
