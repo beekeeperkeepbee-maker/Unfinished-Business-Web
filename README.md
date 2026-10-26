@@ -18,7 +18,8 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - The dashboard at the top shows your proud/encouraging status based on how many projects you've finished.
 - **Delete:** Try to abandon a project, and the app forces you to write a 500-character letter of shame first.
 - **Reminders:** Click "🔔 Enable Reminders" and allow the browser permission. The app uses a Service Worker to send a desktop notification 1 minute after you add a project. (In a future version, this will become a daily reminder.)
-- - **Trophy Case:** Finished projects are displayed at the bottom of the page with a checkmark and crossed out, so you can see your accomplishments.
+- **Trophy Case:** Finished projects are displayed at the bottom of the page with a checkmark and crossed out, so you can see your accomplishments.
+- **Animations:** Projects slide in when added, fade out when finished, and pop into the trophy case.
 
 ### Roadmap
 
@@ -29,7 +30,8 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 1.4** — Delete a project (with the Shame Letter)
 - [x] **Version 1.5** — Browser notification reminders (using a Service Worker)
 - [x] **Version 2.0** — Visual polish (Finished Projects trophy case)
-- [ ] **Version 2.1** — Animations and micro-interactions
+- [x] **Version 2.1** — Animations (slide-in, pop-in, fade-out)
+- [ ] **Version 2.2** — Slower, classier animations (0.5s+)
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
 ### Built With
