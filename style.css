@@ -187,7 +187,7 @@ li {
 
 /* Apply the animation to the list items */
 #project-list li {
-    animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.6s ease-out;
 }
 
 /* Animation for when a project is moved to the trophy case */
@@ -206,12 +206,12 @@ li {
 }
 
 #finished-list li {
-    animation: popIn 0.4s ease-out;
+    animation: popIn 0.8s ease-out;
 }
 
 /* The class we will add via JavaScript to trigger a fade-out */
 .fade-out {
-    animation: fadeOut 0.3s forwards;
+    animation: fadeOut 0.6s forwards;
 }
 
 @keyframes fadeOut {
