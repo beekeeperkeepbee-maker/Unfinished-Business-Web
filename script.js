@@ -123,16 +123,18 @@ function finishProject(index) {
     const itemToAnimate = items[index];
 
     // Add the fade-out class
-    itemToAnimate.classList.add("fade-out");
+    if (itemToAnimate) {
+        itemToAnimate.classList.add("fade-out");
+    }
 
-    // Wait 300ms for the animation to finish, THEN do the logic
+    // Wait 600ms for the animation to finish, THEN do the logic
     setTimeout(function() {
         alert(`🎉 You finished: '${finishedName}'! 🎉\n\nThe world you see today is made by some dedicated and determined souls like you. Finishing a project is a brick laid perfectly in the castle of your dreams.\n\nWell done. Truly.`);
         
         data.finished.push(finishedName);
         data.unfinished.splice(index, 1);
         saveAndRender();
-    }, 300); // 300ms matches the CSS animation time
+    }, 600); // 600ms matches the new CSS animation time
 }
 
 // The function that runs when a project is deleted
@@ -185,7 +187,7 @@ addButton.addEventListener("click", function () {
         );
     }
 
-        // Send a test notification in 1 minute using the service worker
+    // Send a test notification in 1 minute using the service worker
     if (Notification.permission === "granted") {
         setTimeout(function() {
             navigator.serviceWorker.ready.then(function(registration) {
