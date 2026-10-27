@@ -31,7 +31,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 1.5** — Browser notification reminders (using a Service Worker)
 - [x] **Version 2.0** — Visual polish (Finished Projects trophy case)
 - [x] **Version 2.1** — Animations (slide-in, pop-in, fade-out)
-- [ ] **Version 2.2** — Slower, classier animations (0.5s+)
+- [x] **Version 2.2** — Slower, classier animations (0.6s+)
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
 ### Built With
