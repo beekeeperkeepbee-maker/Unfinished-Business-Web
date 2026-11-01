@@ -37,6 +37,7 @@ notifyButton.addEventListener("click", function() {
         Notification.requestPermission().then(function (permission) {
             if (permission === "granted") {
                 alert("Reminders enabled! You'll be notified about your projects.");
+                                scheduleRandomReminder(); // Start the random cycle immediately
                 new Notification("Unfinished Business", {
                     body: "Notifications are working. Don't make me use the shame letter.",
                 });
@@ -186,17 +187,6 @@ addButton.addEventListener("click", function () {
             "3. Keep this tab open in the background."
         );
     }
-
-    // Send a test notification in 1 minute using the service worker
-    if (Notification.permission === "granted") {
-        setTimeout(function() {
-            navigator.serviceWorker.ready.then(function(registration) {
-                registration.showNotification("Unfinished Business Reminder", {
-                    body: `Don't forget: you started "${projectName}". Are you making progress?`,
-                });
-            });
-        }, 60000);
-    }
     
     saveAndRender();
 });
@@ -211,3 +201,50 @@ inputBox.addEventListener("keydown", function (event) {
 
 // Draw the list when the page loads
 saveAndRender();
+
+// --- RANDOM REMINDER LOGIC ---
+
+function showReminderNotification() {
+    if (Notification.permission !== "granted") return;
+
+    // Pick a random unfinished project to remind the user about
+    if (data.unfinished.length === 0) {
+        // If they have no unfinished projects, remind them to start one!
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification("Unfinished Business", {
+                body: "Your list is empty. What are you waiting for? Start something!",
+            });
+        });
+    } else {
+        // Pick a random project from the list
+        const randomIndex = Math.floor(Math.random() * data.unfinished.length);
+        const randomProject = data.unfinished[randomIndex];
+
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification("Unfinished Business Reminder", {
+                body: `Don't forget: you started "${randomProject}". Are you making progress?`,
+            });
+        });
+    }
+}
+
+function scheduleRandomReminder() {
+    // Pick a random time between 1 and 3 hours (in milliseconds)
+    // 1 hour = 3,600,000 ms. 3 hours = 10,800,000 ms.
+    const minTime = 10 * 1000;
+    const maxTime = 30 * 1000;
+    const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
+
+    console.log(`Next reminder scheduled in ${Math.round(randomTime / 60000)} minutes.`);
+
+    setTimeout(function() {
+        showReminderNotification();
+        // After showing, schedule the next one
+        scheduleRandomReminder();
+    }, randomTime);
+}
+
+// Start the reminder cycle when the page loads (only if permission is granted)
+if (Notification.permission === "granted") {
+    scheduleRandomReminder();
+}
