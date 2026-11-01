@@ -1,4 +1,6 @@
-/* Reset some default browser styles */
+/* =========================================
+   1. RESET & BASE
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +21,9 @@ h2, p, input, ul {
     text-align: left;
 }
 
+/* =========================================
+   2. TYPOGRAPHY & HEADERS
+   ========================================= */
 h1 {
     font-size: 2.5rem;
     color: #d62828;
@@ -37,12 +42,43 @@ p {
     margin-bottom: 20px;
 }
 
+#subtitle {
+    text-align: center;
+}
+
 hr {
     border: none;
     border-top: 1px solid #2a2a45;
     margin: 30px 0;
 }
 
+/* =========================================
+   3. LAYOUT & CONTAINERS
+   ========================================= */
+ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+li {
+    background-color: #0f0f1e;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 3px solid #d62828;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; 
+}
+
+/* =========================================
+   4. COMPONENTS (Buttons, Inputs, Messages)
+   ========================================= */
 input[type="text"] {
     padding: 10px 15px;
     border: 1px solid #2a2a45;
@@ -67,7 +103,6 @@ button {
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    margin-left: 10px;
     transition: background-color 0.2s;
 }
 
@@ -75,52 +110,9 @@ button:hover {
     background-color: #a01e1e;
 }
 
-ul {
-    list-style: none;
-    margin-top: 15px;
-}
-
-#subtitle {
-    text-align: center;
-}
-
-.finish-button {
-    float: right;
-    padding: 5px 12px;
-    font-size: 0.85rem;
-    margin-left: 10px;
-}
-
-#status-message {
-    text-align: center;
-    margin: 25px 0;
-    padding: 15px;
-    background-color: #0f0f1e;
-    border-radius: 6px;
-    color: #a0a0b0;
-}
-
-#status-message strong {
-    color: #d62828;
-}
-
-
 .finish-button {
     padding: 5px 12px;
     font-size: 0.85rem;
-}
-
-#status-message {
-    text-align: center;
-    margin: 25px 0;
-    padding: 15px;
-    background-color: #0f0f1e;
-    border-radius: 6px;
-    color: #a0a0b0;
-}
-
-#status-message strong {
-    color: #d62828;
 }
 
 .delete-button {
@@ -135,23 +127,22 @@ ul {
     color: #eaeaea;
 }
 
-.button-group {
-    display: flex;
-    gap: 10px; 
-}
-
-li {
-    background-color: #0f0f1e;
+#status-message {
+    text-align: center;
+    margin: 25px 0;
     padding: 15px;
+    background-color: #0f0f1e;
     border-radius: 6px;
-    margin-bottom: 10px;
-    border-left: 3px solid #d62828;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    color: #a0a0b0;
 }
 
-/* Styling for the finished projects trophy case */
+#status-message strong {
+    color: #d62828;
+}
+
+/* =========================================
+   5. TROPHY CASE (Finished Projects)
+   ========================================= */
 #finished-heading {
     color: #d62828;
     margin-top: 40px;
@@ -163,6 +154,7 @@ li {
     color: #a0a0b0;
     text-decoration: line-through;
     display: block;
+    animation: popIn 0.8s ease-out;
 }
 
 #finished-list li::before {
@@ -173,50 +165,45 @@ li {
     display: inline-block;
 }
 
-/* Animation for when a new project is added */
+/* =========================================
+   6. ANIMATIONS
+   ========================================= */
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px); /* Start slightly above */
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0); /* End in normal position */
+        transform: translateY(0);
     }
 }
 
-/* Apply the animation to the list items */
 #project-list li {
     animation: slideIn 0.6s ease-out;
 }
 
-/* Animation for when a project is moved to the trophy case */
 @keyframes popIn {
     0% {
         opacity: 0;
-        transform: scale(0.9); /* Start slightly smaller */
+        transform: scale(0.9);
     }
     50% {
-        transform: scale(1.02); /* Slight overshoot for a "pop" effect */
+        transform: scale(1.02);
     }
     100% {
         opacity: 1;
-        transform: scale(1); /* End at normal size */
+        transform: scale(1);
     }
-}
-
-#finished-list li {
-    animation: popIn 0.8s ease-out;
-}
-
-/* The class we will add via JavaScript to trigger a fade-out */
-.fade-out {
-    animation: fadeOut 0.6s forwards;
 }
 
 @keyframes fadeOut {
     to {
         opacity: 0;
-        transform: translateX(20px); /* Slide slightly to the right */
+        transform: translateX(20px);
     }
+}
+
+.fade-out {
+    animation: fadeOut 0.6s forwards;
 }
