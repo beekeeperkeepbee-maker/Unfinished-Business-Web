@@ -20,6 +20,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - **Reminders:** Click "🔔 Enable Reminders" and allow the browser permission. The app uses a Service Worker to send a desktop notification 1 minute after you add a project. (In a future version, this will become a daily reminder.)
 - **Trophy Case:** Finished projects are displayed at the bottom of the page with a checkmark and crossed out, so you can see your accomplishments.
 - **Animations:** Projects slide in when added, fade out when finished, and pop into the trophy case.
+- **Random Reminders:** If you enable notifications, the app will send you a reminder at a random time between 1 and 8 hours (while the tab is open). This makes it perfect to leave running in the background during a workday.
 
 ### Roadmap
 
@@ -32,6 +33,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 2.0** — Visual polish (Finished Projects trophy case)
 - [x] **Version 2.1** — Animations (slide-in, pop-in, fade-out)
 - [x] **Version 2.2** — Slower, classier animations (0.6s+)
+- [x] **Version 2.3** — Random reminders (1-8 hour intervals while tab is open)
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
 ### Built With
