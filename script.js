@@ -232,8 +232,8 @@ function showReminderNotification() {
 function scheduleRandomReminder() {
     // Pick a random time between 1 and 3 hours (in milliseconds)
     // 1 hour = 3,600,000 ms. 3 hours = 10,800,000 ms.
-    const minTime = 10 * 1000;
-    const maxTime = 30 * 1000;
+    const minTime = 1 * 60 * 60 * 1000;
+    const maxTime = 8 * 60 * 60 * 1000;
     const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
 
     console.log(`Next reminder scheduled in ${Math.round(randomTime / 60000)} minutes.`);
