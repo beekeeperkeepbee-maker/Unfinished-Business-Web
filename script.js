@@ -33,6 +33,7 @@ notifyButton.addEventListener("click", function() {
         alert("This browser does not support desktop notifications.");
     } else if (Notification.permission === "granted") {
         alert("Reminders are already enabled!");
+        scheduleRandomReminder(); // <-- Add this line
     } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(function (permission) {
             if (permission === "granted") {
@@ -245,6 +246,7 @@ function scheduleRandomReminder() {
 }
 
 // Start the reminder cycle when the page loads (only if permission is granted)
+console.log("Page loaded. Notification permission:", Notification.permission);
 if (Notification.permission === "granted") {
     scheduleRandomReminder();
 }
