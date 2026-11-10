@@ -1,5 +1,4 @@
 // Step 1: Find the elements we need to work with
-const clearFinishedButton = document.getElementById("clear-finished-button");
 const inputBox = document.getElementById("project-input");
 const addButton = document.getElementById("add-button");
 const projectList = document.getElementById("project-list");
@@ -7,6 +6,7 @@ const statusMessage = document.getElementById("status-message");
 const notifyButton = document.getElementById("enable-notifications");
 const finishedHeading = document.getElementById("finished-heading");
 const finishedList = document.getElementById("finished-list");
+const clearFinishedButton = document.getElementById("clear-finished-button");
 
 // Register the service worker for notifications
 if ("serviceWorker" in navigator) {
@@ -34,12 +34,12 @@ notifyButton.addEventListener("click", function() {
         alert("This browser does not support desktop notifications.");
     } else if (Notification.permission === "granted") {
         alert("Reminders are already enabled!");
-        scheduleRandomReminder(); // <-- Add this line
+        scheduleRandomReminder();
     } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(function (permission) {
             if (permission === "granted") {
                 alert("Reminders enabled! You'll be notified about your projects.");
-                                scheduleRandomReminder(); // Start the random cycle immediately
+                scheduleRandomReminder();
                 new Notification("Unfinished Business", {
                     body: "Notifications are working. Don't make me use the shame letter.",
                 });
@@ -105,7 +105,8 @@ function saveAndRender() {
     if (finishedCount > 0) {
         finishedHeading.style.display = "block";
         finishedList.style.display = "block";
-
+        clearFinishedButton.style.display = "inline-block";
+        
         data.finished.forEach(function (projectName) {
             const listItem = document.createElement("li");
             listItem.textContent = projectName;
@@ -114,6 +115,7 @@ function saveAndRender() {
     } else {
         finishedHeading.style.display = "none";
         finishedList.style.display = "none";
+        clearFinishedButton.style.display = "none";
     }
 }
 
@@ -137,9 +139,10 @@ function finishProject(index) {
         data.finished.push(finishedName);
         data.unfinished.splice(index, 1);
         saveAndRender();
-    }, 600); // 600ms matches the new CSS animation time
+    }, 600);
 }
 
+// Clear Trophy Case Logic
 clearFinishedButton.addEventListener("click", function () {
     if (data.finished.length === 0) return;
 
@@ -219,16 +222,13 @@ saveAndRender();
 function showReminderNotification() {
     if (Notification.permission !== "granted") return;
 
-    // Pick a random unfinished project to remind the user about
     if (data.unfinished.length === 0) {
-        // If they have no unfinished projects, remind them to start one!
         navigator.serviceWorker.ready.then(function(registration) {
             registration.showNotification("Unfinished Business", {
                 body: "Your list is empty. What are you waiting for? Start something!",
             });
         });
     } else {
-        // Pick a random project from the list
         const randomIndex = Math.floor(Math.random() * data.unfinished.length);
         const randomProject = data.unfinished[randomIndex];
 
@@ -241,8 +241,6 @@ function showReminderNotification() {
 }
 
 function scheduleRandomReminder() {
-    // Pick a random time between 1 and 3 hours (in milliseconds)
-    // 1 hour = 3,600,000 ms. 3 hours = 10,800,000 ms.
     const minTime = 1 * 60 * 60 * 1000;
     const maxTime = 8 * 60 * 60 * 1000;
     const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
@@ -251,12 +249,10 @@ function scheduleRandomReminder() {
 
     setTimeout(function() {
         showReminderNotification();
-        // After showing, schedule the next one
         scheduleRandomReminder();
     }, randomTime);
 }
 
-// Start the reminder cycle when the page loads (only if permission is granted)
 console.log("Page loaded. Notification permission:", Notification.permission);
 if (Notification.permission === "granted") {
     scheduleRandomReminder();
