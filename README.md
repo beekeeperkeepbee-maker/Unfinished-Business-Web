@@ -34,6 +34,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 2.1** — Animations (slide-in, pop-in, fade-out)
 - [x] **Version 2.2** — Slower, classier animations (0.6s+)
 - [x] **Version 2.3** — Random reminders (1-8 hour intervals while tab is open)
+- [x] **Version 2.4** — Visual polish (gradient wallpaper + Clear Trophy Case)
 - [ ] **Version 3.0** — Connect to the Python backend for shared storage
 
 ### Built With
