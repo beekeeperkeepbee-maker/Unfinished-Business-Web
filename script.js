@@ -1,4 +1,5 @@
 // Step 1: Find the elements we need to work with
+const clearFinishedButton = document.getElementById("clear-finished-button");
 const inputBox = document.getElementById("project-input");
 const addButton = document.getElementById("add-button");
 const projectList = document.getElementById("project-list");
@@ -138,6 +139,16 @@ function finishProject(index) {
         saveAndRender();
     }, 600); // 600ms matches the new CSS animation time
 }
+
+clearFinishedButton.addEventListener("click", function () {
+    if (data.finished.length === 0) return;
+
+    const confirmed = confirm("Are you sure you want to clear your trophy case? Your accomplishments will be forgotten.");
+    if (confirmed) {
+        data.finished = [];
+        saveAndRender();
+    }
+});
 
 // The function that runs when a project is deleted
 function shameAndDelete(index) {
