@@ -41,5 +41,6 @@ After building the Python CLI version, I wanted to learn how to make the same id
 ### Built With
 
 - HTML5
-- CSS3 (custom properties, flexbox)
-- Vanilla JavaScript (DOM manipulation, `localStorage` API)
+- CSS3 (custom properties, flexbox, animations)
+- Vanilla JavaScript (DOM manipulation, fetch API, Service Workers)
+- Python (Flask backend API hosted on Render)
