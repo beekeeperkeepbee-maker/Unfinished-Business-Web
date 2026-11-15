@@ -37,6 +37,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 2.3** — Random reminders (1-8 hour intervals while tab is open)
 - [x] **Version 2.4** — Visual polish (gradient wallpaper + Clear Trophy Case)
 - [x] **Version 3.0** — Connect to the Python backend for shared storage
+- [x] **Version 3.1** — Sticky Note visual theme (desk background, handwritten fonts)
 
 ### Built With
 
@@ -44,3 +45,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - CSS3 (custom properties, flexbox, animations)
 - Vanilla JavaScript (DOM manipulation, fetch API, Service Workers)
 - Python (Flask backend API hosted on Render)
+
+### Visual Design
+
+The app features a "Sticky Note Desk" theme. The background is a custom illustration of a chaotic desk, and projects are rendered as handwritten sticky notes to match the idea of a messy, unfinished workspace.
