@@ -29,7 +29,10 @@ inputBox.focus();
 let data = { unfinished: [], finished: [] };
 
 // --- STEP 2: FETCH DATA FROM THE SERVER ---
-function fetchData() {
+function fetchData(retries = 3) {
+    // Show a loading message immediately
+    statusMessage.innerHTML = `<p style="color: #f4d03f;">Connecting to the server... (it may take up to 30 seconds if it was asleep)</p>`;
+    
     fetch(`${API_URL}/projects`)
         .then(response => response.json())
         .then(serverData => {
@@ -38,7 +41,14 @@ function fetchData() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-            statusMessage.innerHTML = `<p style="color: #d62828;">Could not connect to the backend. Is it awake?</p>`;
+            
+            if (retries > 0) {
+                // Wait 5 seconds and try again
+                statusMessage.innerHTML = `<p style="color: #f4d03f;">Server is waking up... retrying in 5 seconds (${retries} attempts left)</p>`;
+                setTimeout(() => fetchData(retries - 1), 5000);
+            } else {
+                statusMessage.innerHTML = `<p style="color: #d62828;">Could not connect to the backend after multiple tries. Please refresh the page.</p>`;
+            }
         });
 }
 
@@ -222,7 +232,12 @@ inputBox.addEventListener("keydown", function (event) {
 });
 
 // Start the app by fetching from the backend
-fetchData();
+// Wake up the server proactively (fire-and-forget ping)
+fetch(`${API_URL}/`).catch(() => {});
+
+// Wait 2 seconds before fetching data, to give the server time to wake up
+statusMessage.innerHTML = `<p style="color: #f4d03f;">Waking up the server...</p>`;
+setTimeout(() => fetchData(), 2000);
 
 // --- RANDOM REMINDER LOGIC ---
 function showReminderNotification() {
