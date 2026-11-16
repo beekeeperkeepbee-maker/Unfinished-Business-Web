@@ -21,7 +21,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - **Trophy Case:** Finished projects are displayed at the bottom of the page with a checkmark and crossed out, so you can see your accomplishments.
 - **Animations:** Projects slide in when added, fade out when finished, and pop into the trophy case.
 - **Random Reminders:** If you enable notifications, the app will send you a reminder at a random time between 1 and 8 hours (while the tab is open). This makes it perfect to leave running in the background during a workday.
-- **Database:** The app now uses a custom Python Flask API (hosted on Render) to store projects permanently in the cloud.
+- **Database:** The app uses a custom Python Flask API (hosted on Render) to store projects permanently in the cloud. A free uptime monitor (UptimeRobot) pings the server every 5 minutes to prevent it from sleeping and losing data.
 
 ### Roadmap
 
@@ -38,6 +38,7 @@ After building the Python CLI version, I wanted to learn how to make the same id
 - [x] **Version 2.4** — Visual polish (gradient wallpaper + Clear Trophy Case)
 - [x] **Version 3.0** — Connect to the Python backend for shared storage
 - [x] **Version 3.1** — Sticky Note visual theme (desk background, handwritten fonts)
+- [x] **Version 3.2** — Keep-alive monitor to prevent Render cold starts and data loss
 
 ### Built With
 
